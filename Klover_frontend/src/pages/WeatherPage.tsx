@@ -63,7 +63,6 @@ export function WeatherPage() {
       <Card style={{ marginTop: 14 }}>
         <CardHeader
           title="Automatic watering today"
-          subtitle={`Scheduled runs are skipped when the rain chance is ${RAIN_SKIP_THRESHOLD}% or higher.`}
           actions={
             chance !== null ? (
               skipping ? (

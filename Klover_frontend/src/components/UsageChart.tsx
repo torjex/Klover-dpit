@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { formatLiters } from "../lib/format";
 
-/** Categorical series colours, ordered so neighbouring stacks stay separable. */
 export const SERIES_COLORS = [
   "#1f7a52",
   "#8bbf3d",
@@ -12,9 +11,7 @@ export const SERIES_COLORS = [
 ];
 
 export interface Bucket {
-  /** Axis label, e.g. "06:00" or "Mon 2". */
   label: string;
-  /** Only some labels are drawn, to keep the axis readable. */
   showLabel: boolean;
   byZone: Map<string, number>;
 }

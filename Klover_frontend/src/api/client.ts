@@ -14,15 +14,9 @@ import type {
   ZoneConsumption,
 } from "./types";
 
-// Relative on purpose: every request goes to whatever origin the page
-// itself was loaded from (laptop's own browser, or a phone on the hotspot
-// hitting the laptop's IP) and Vite's dev server proxy (see vite.config.ts)
-// forwards /api/* to the real backend on localhost:3000. Override with
-// VITE_API_URL only if you stop using the dev server's proxy.
 const BASE = import.meta.env.VITE_API_URL ?? "/api";
 const KEY_STORAGE = "klover.apiKey";
 
-/** The one zone this test build talks to. Matches DEFAULT_ZONE in the backend's .env. */
 export const ZONE = "frontlawn";
 
 export class ApiError extends Error {
@@ -34,7 +28,7 @@ export class ApiError extends Error {
   }
 }
 
-/** Fired when the backend rejects the stored key, so the app can sign out. */
+
 export const SESSION_EXPIRED = "klover:session-expired";
 
 export function readApiKey(): string | null {
@@ -65,9 +59,6 @@ interface RequestOptions {
 
 async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
   const { method = "GET", body, query, signal, anonymous } = options;
-  // Built as a plain string, not `new URL(...)`: BASE is a relative path
-  // ("/api") on purpose, for the Vite proxy - and the URL constructor
-  // throws on a relative string with no base to resolve against.
   const params = new URLSearchParams();
   for (const [key, value] of Object.entries(query ?? {}))
     if (value !== undefined && value !== "") params.set(key, String(value));

@@ -7,11 +7,6 @@ import { formatClock, formatLiters } from "../lib/format";
 import "./WateringPage.css";
 
 const PRESETS = [5, 10, 15];
-/**
- * Mirrors FLOW_RATE_LPM in the backend's irrigationService.js. The backend
- * doesn't expose this over the API, so it's duplicated here just for the
- * estimate shown before you start a run - update both if it ever changes.
- */
 const FLOW_RATE_LPM = 8;
 
 export function WateringPage() {
@@ -20,10 +15,6 @@ export function WateringPage() {
   const [minutes, setMinutes] = useState(10);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  // Captured when *this* page starts a run, so the progress ring has a total
-  // to count down from. If watering is already running when the page loads
-  // (started elsewhere - curl, the scheduler), the first observed
-  // remainingSeconds is used as a best-guess total instead.
   const [activeDurationSeconds, setActiveDurationSeconds] = useState<number | null>(null);
 
   const watering = status.data?.watering ?? false;
@@ -32,16 +23,10 @@ export function WateringPage() {
   useEffect(() => {
     if (watering && activeDurationSeconds === null) setActiveDurationSeconds(remaining);
     if (!watering && activeDurationSeconds !== null) setActiveDurationSeconds(null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watering]);
 
   useEffect(() => {
-    // The backend only knows the run ended once the ESP32 reports it (see
-    // the ESP32-side reliability notes) - polling still needs to happen,
-    // but there's no reason to sit through the rest of a 2s interval once
-    // the displayed clock already hit zero.
     if (watering && remaining <= 0) status.reload();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [remaining]);
 
   const estimatedLiters = FLOW_RATE_LPM * minutes;

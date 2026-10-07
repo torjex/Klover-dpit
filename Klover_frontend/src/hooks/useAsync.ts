@@ -5,15 +5,11 @@ interface AsyncState<T> {
   data: T | null;
   error: string | null;
   loading: boolean;
-  /** True only on the first load, so refreshes do not flash skeletons. */
   initial: boolean;
   reload: () => void;
 }
 
-/**
- * Loads data on mount, on dependency change, and optionally on an interval.
- * The latest request always wins, so slow responses cannot overwrite newer ones.
- */
+
 export function useAsync<T>(
   loader: () => Promise<T>,
   deps: unknown[] = [],

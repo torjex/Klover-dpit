@@ -10,6 +10,7 @@ const TOPICS = {
     sensorsWildcard: 'sprinkler/+/sensors',
 };
 
+let latestStatus = {};
 let latestSensors = {};
 
 client.on('connect', () => {

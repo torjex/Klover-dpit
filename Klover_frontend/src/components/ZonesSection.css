@@ -1,6 +1,3 @@
-/* ---------------------------------------------------------------
-   Overview zones section — header, card grid and list view
-   --------------------------------------------------------------- */
 .zsec {
   --zs-ink: #16233a;
   --zs-title: #22334a;
@@ -15,7 +12,7 @@
   margin-top: 30px;
 }
 
-/* Header -------------------------------------------------------- */
+
 .zsec__head {
   display: flex;
   align-items: center;
@@ -97,16 +94,10 @@
   color: var(--zs-green-deep);
 }
 
-/* Grid ---------------------------------------------------------- */
 .zsec__grid {
   --zs-gap: 20px;
   display: grid;
   gap: var(--zs-gap);
-  /*
-   * At most three columns, and a new column only forms when every card can
-   * still be at least 340px wide - narrower than that and the three metrics
-   * in the card footer no longer fit.
-   */
   grid-template-columns: repeat(
     auto-fit,
     minmax(max(340px, (100% - var(--zs-gap) * 2) / 3), 1fr)
@@ -119,7 +110,7 @@
   }
 }
 
-/* Card ---------------------------------------------------------- */
+
 .zcard {
   container-type: inline-size;
   display: flex;
@@ -231,10 +222,9 @@ a.zcard:hover .zcard__chevron {
   white-space: nowrap;
 }
 
-/* Metrics ------------------------------------------------------- */
+
 .zcard__metrics {
   display: grid;
-  /* The first slot holds a day-and-time string, so it needs more room. */
   grid-template-columns: 1.16fr 0.9fr 0.94fr;
   margin-top: 16px;
   padding: 14px 14px 16px;
@@ -284,7 +274,7 @@ a.zcard:hover .zcard__chevron {
   font-weight: 600;
 }
 
-/* Narrow cards keep the icons and tighten everything around them. */
+
 @container (max-width: 370px) {
   .zmetric {
     gap: 4px;
@@ -301,14 +291,13 @@ a.zcard:hover .zcard__chevron {
     font-size: 12px;
   }
   .zcard__metrics {
-    /* Rebalanced for the smaller type: the day-and-time slot still needs most. */
     grid-template-columns: 1.24fr 0.87fr 0.89fr;
     padding-left: 12px;
     padding-right: 12px;
   }
 }
 
-/* List view ----------------------------------------------------- */
+
 .zsec__list {
   display: flex;
   flex-direction: column;

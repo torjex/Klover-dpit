@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import { api, readApiKey, SESSION_EXPIRED, writeApiKey } from "../api/client";
 
 interface AuthValue {
-  /** True once we're signed in (an API key is stored). No user profile exists in this test build. */
   signedIn: boolean;
   ready: boolean;
   signIn: (password: string) => Promise<void>;
@@ -13,8 +12,6 @@ interface AuthValue {
 const AuthContext = createContext<AuthValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  // The backend has no "am I still valid" endpoint, so a stored key is
-  // trusted until a real request comes back 401 (see the listener below).
   const [signedIn, setSignedIn] = useState(() => !!readApiKey());
   const [ready] = useState(true);
 

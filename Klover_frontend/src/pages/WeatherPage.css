@@ -88,7 +88,7 @@
   color: var(--muted);
 }
 
-/* Settings list ------------------------------------------------ */
+
 .setting {
   display: flex;
   align-items: flex-start;
@@ -163,7 +163,7 @@
   color: var(--ink-2);
 }
 
-/* Place search -------------------------------------------------- */
+
 .places {
   margin-top: 6px;
   border: 1px solid var(--border);

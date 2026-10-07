@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { Badge, Icon, Wordmark } from "../ui";
+import { Icon, Wordmark } from "../ui";
 import type { IconName } from "../ui";
 import "./AppShell.css";
 
@@ -46,15 +46,6 @@ export function AppShell() {
         <div className="sidebar__spacer" />
 
         <div className="sidebar__footer">
-          <div className="sidebar__mode">
-            {/* A fixed slot the avatar below matches, so both labels start
-                on the same edge. */}
-            <span className="sidebar__mode-icon">
-              <Icon name="flask" size={16} />
-            </span>
-            Simulator
-            <span className="sidebar__mode-dot" aria-hidden="true" />
-          </div>
           <div className="sidebar__user">
             <span className="sidebar__avatar">K</span>
             <div style={{ minWidth: 0 }}>
@@ -96,7 +87,7 @@ export function AppShell() {
   );
 }
 
-/** Shared page heading; every screen carries the simulation-mode badge. */
+/** Shared page heading. */
 export function PageHead({
   title,
   subtitle,
@@ -122,9 +113,6 @@ export function PageHead({
       </div>
       <div className="page-head__actions">
         {actions}
-        <Badge tone="lime" icon="flask">
-          Simulation mode
-        </Badge>
       </div>
     </header>
   );

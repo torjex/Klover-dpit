@@ -8,10 +8,6 @@ import { WeatherPage } from "./pages/WeatherPage";
 import { DataPage } from "./pages/DataPage";
 import { Logo } from "./components/ui";
 
-// Wired up for this test build: Login, Watering, Schedules and Weather
-// (single zone, no accounts, no map). OverviewPage / ZonesPage / MapPage /
-// ActivityPage still exist under src/pages but are not imported here - they
-// call the old multi-tenant API and are excluded in tsconfig.app.json.
 export function App() {
   const { signedIn, ready } = useAuth();
 

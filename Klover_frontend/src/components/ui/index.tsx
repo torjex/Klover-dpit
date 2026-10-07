@@ -20,7 +20,7 @@ import "./ui.css";
 
 const cx = (...parts: (string | false | undefined)[]) => parts.filter(Boolean).join(" ");
 
-/* -- Button ------------------------------------------------------ */
+
 type ButtonVariant = "primary" | "lime" | "secondary" | "ghost" | "danger";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -76,7 +76,7 @@ export function IconButton({
   );
 }
 
-/* -- Card -------------------------------------------------------- */
+
 export function Card({
   children,
   pad,
@@ -115,7 +115,7 @@ export function CardHeader({
   );
 }
 
-/* -- Stat -------------------------------------------------------- */
+
 export function Stat({
   icon,
   value,
@@ -152,7 +152,7 @@ export function Stat({
   );
 }
 
-/* -- Badge ------------------------------------------------------- */
+
 export function Badge({
   tone = "neutral",
   dot,
@@ -175,7 +175,7 @@ export function Badge({
   );
 }
 
-/* -- Toggle ------------------------------------------------------ */
+
 export function Toggle({
   checked,
   onChange,
@@ -187,7 +187,6 @@ export function Toggle({
   onChange: (next: boolean) => void;
   label: string;
   disabled?: boolean;
-  /** Keeps the accessible name but drops the visible text. */
   hideLabel?: boolean;
 }) {
   return (
@@ -209,7 +208,7 @@ export function Toggle({
   );
 }
 
-/* -- Form fields ------------------------------------------------- */
+
 export function Field({
   label,
   hint,
@@ -269,7 +268,7 @@ export function SelectField({
   );
 }
 
-/* -- Segmented control ------------------------------------------- */
+
 export function Segmented<T extends string>({
   value,
   options,
@@ -300,7 +299,7 @@ export function Segmented<T extends string>({
   );
 }
 
-/* -- Row menu ---------------------------------------------------- */
+
 export function RowMenu({
   items,
   label = "Row actions",
@@ -361,7 +360,7 @@ export function RowMenu({
   );
 }
 
-/* -- Modal ------------------------------------------------------- */
+
 export function Modal({
   title,
   subtitle,
@@ -436,7 +435,7 @@ export function Modal({
   );
 }
 
-/* -- Feedback ---------------------------------------------------- */
+
 export function Alert({
   tone = "info",
   children,
@@ -481,7 +480,7 @@ export function Skeleton({ height = 16, width = "100%", radius }: { height?: num
   return <div className="skeleton" style={{ height, width, borderRadius: radius }} />;
 }
 
-/* -- Toasts ------------------------------------------------------ */
+
 interface Toast {
   id: number;
   message: string;

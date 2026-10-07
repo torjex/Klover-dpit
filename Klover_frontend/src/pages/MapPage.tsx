@@ -21,10 +21,6 @@ import type {
 } from "../api/types";
 import "./MapPage.css";
 
-/* -- Basemaps ----------------------------------------------------
- * Mapbox satellite when a token is configured - it carries higher-resolution
- * imagery in most places - otherwise the keyless Esri service.
- */
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN ?? "";
 
 const ESRI = {
@@ -32,8 +28,6 @@ const ESRI = {
   attribution:
     'Imagery &copy; <a href="https://www.esri.com/">Esri</a>, Maxar, Earthstar Geographics',
   maxNativeZoom: 18,
-  /* Esri answers missing tiles with a grey placeholder rather than a 404, so the
-   * deepest usable level is probed per location. */
   probeCoverage: true,
 };
 
@@ -47,19 +41,12 @@ const MAPBOX = {
 
 const SATELLITE = MAPBOX_TOKEN ? MAPBOX : ESRI;
 
-/** The aerial tiles, or the homeowner's own drone photograph. */
 type Basemap = "satellite" | "drone";
 
-/** Deepest level the imagery service will be asked for. */
+
 const DEEPEST_PROBE = 20;
 const SHALLOWEST_PROBE = 16;
 
-/**
- * Esri publishes per-tile coverage through its `tilemap` endpoint, which answers
- * `{data:[1]}` when a tile really exists. Walking down from the deepest level
- * finds the sharpest imagery actually available over this spot, so the map is as
- * detailed as the location allows instead of showing placeholder grey.
- */
 async function deepestImageryZoom(
   lat: number,
   lon: number,
@@ -91,12 +78,6 @@ const FALLBACK_VIEW: { center: [number, number]; zoom: number } = {
   zoom: 17,
 };
 
-/**
- * Floating panels sit on top of the Leaflet container, which otherwise treats
- * gestures over them as map drags and zooms. Only the gesture-starting events
- * are stopped: `click` must keep bubbling or React's delegated handlers, which
- * listen at the app root, would never fire.
- */
 const MAP_GESTURES = "mousedown touchstart pointerdown dblclick wheel contextmenu";
 
 function useControlLayer() {
@@ -108,11 +89,6 @@ function useControlLayer() {
 
 export function MapPage() {
   const toast = useToast();
-  /*
-   * The rail mirrors live backend state: zone rows carry the running run and
-   * its remaining seconds, so they are refetched often; schedules move only
-   * when a run completes or one is edited, so they are refetched slowly.
-   */
   const zones = useAsync(() => api.zones(), [], { intervalMs: 5_000 });
   const schedules = useAsync(() => api.schedules(), [], { intervalMs: 30_000 });
   const settings = useAsync(() => api.settings(), []);
@@ -168,7 +144,6 @@ export function MapPage() {
 
   const list = useMemo(() => zones.data ?? [], [zones.data]);
   const nextRuns = useMemo(() => nextRunPerZone(schedules.data ?? []), [schedules.data]);
-  /** Drives the countdowns and the remaining-time readout once a second. */
   const tick = useSecondsTick(true);
 
   const reloadOverlays = overlays.reload;
@@ -176,13 +151,6 @@ export function MapPage() {
   const activeOverlay =
     overlayList.find((item) => item.id === activeOverlayId) ?? overlayList[0] ?? null;
 
-  /*
-   * -- Two independent maps ------------------------------------------------
-   * A drone photograph is its own drawing surface. Outlines traced on it are
-   * stored against that image and loaded here; the satellite view keeps using
-   * the zone's own `geometry`. Nothing is shared, so switching views never
-   * carries one view's shapes onto the other.
-   */
   const droneView = basemap === "drone" && !!activeOverlay;
   const overlayShapes = useAsync(
     () => (activeOverlay ? api.overlayShapes(activeOverlay.id) : Promise.resolve([])),
@@ -195,7 +163,6 @@ export function MapPage() {
     return map;
   }, [overlayShapes.data]);
 
-  /** The outline and sprinklers this zone has *in the view being shown*. */
   const shapeOf = useCallback(
     (zone: Zone): { geometry: PolygonGeometry | null; sprinklers: Sprinkler[] } => {
       if (!droneView) return { geometry: zone.geometry, sprinklers: zone.sprinklers ?? [] };

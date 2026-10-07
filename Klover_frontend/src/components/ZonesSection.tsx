@@ -16,13 +16,9 @@ const VIEW_KEY = "klover.zoneView";
 
 export interface ZoneCardData {
   zone: Zone;
-  /** Planting description from the zone's field, e.g. "Tomatoes, lettuce". */
   crop: string;
-  /** Next scheduled start for this zone, or null when nothing is scheduled. */
   nextRunAt: string | null;
-  /** Estimated litres used today. */
   litersToday: number;
-  /** Latest soil-moisture reading, or null when the zone has no sensor. */
   soilMoisture: number | null;
 }
 
@@ -118,7 +114,7 @@ function ViewButton({
   );
 }
 
-/* -- Grid card ---------------------------------------------------- */
+
 function ZoneCard({ data, now }: { data: ZoneCardData; now: number }) {
   const status = zoneStatus(data.zone);
   return (
@@ -146,7 +142,7 @@ function ZoneCard({ data, now }: { data: ZoneCardData; now: number }) {
   );
 }
 
-/* -- List row ----------------------------------------------------- */
+
 function ZoneRow({ data, now }: { data: ZoneCardData; now: number }) {
   const status = zoneStatus(data.zone);
   return (
@@ -168,11 +164,9 @@ function ZoneRow({ data, now }: { data: ZoneCardData; now: number }) {
   );
 }
 
-/* -- Metrics ------------------------------------------------------ */
+
 function ZoneMetrics({ data, now }: { data: ZoneCardData; now: number }) {
   const running = runningLabel(data.zone, now);
-  // A paused zone still has a schedule, but the scheduler skips it, so the
-  // time is shown muted with an explanation rather than as a firm commitment.
   const paused = !data.zone.enabled;
   return (
     <>
@@ -230,14 +224,14 @@ function Metric({
   );
 }
 
-/* -- Helpers ------------------------------------------------------ */
+
 function zoneStatus(zone: Zone): { label: string; tone: "live" | "paused" | "active" } {
   if (!zone.enabled) return { label: "Paused", tone: "paused" };
   if (zone.active_run_id) return { label: "Watering", tone: "live" };
   return { label: "Active", tone: "active" };
 }
 
-/** Countdown text while a run is in progress, otherwise null. */
+
 function runningLabel(zone: Zone, now: number): string | null {
   if (!zone.active_run_id || !zone.started_at || !zone.duration_seconds) return null;
   const elapsed = (now - Date.parse(zone.started_at)) / 1000;

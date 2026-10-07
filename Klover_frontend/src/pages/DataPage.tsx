@@ -5,9 +5,6 @@ import { Alert, Card, EmptyState, Icon, Skeleton, Stat } from "../components/ui"
 
 const POLL_MS = 3_000;
 
-/** A relative freshness label ("just now" / "8s ago") reads better here than
- * an absolute clock time - the point is to show whether the reading is
- * stale, not what UTC time it arrived. */
 function timeAgo(iso: string): string {
   const seconds = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 1000));
   if (seconds < 5) return "just now";
@@ -18,9 +15,6 @@ function timeAgo(iso: string): string {
 export function DataPage() {
   const sensors = useAsync(() => api.sensors(), [], { intervalMs: POLL_MS });
 
-  // The backend returns this exact message when the ESP32 hasn't reported
-  // yet for this zone (see src/api/routes/sensors.js) - that's an expected,
-  // quiet state here, not something to show as an error.
   const notYetReporting = sensors.error === "No sensor reading yet for this zone.";
   const otherError = sensors.error && !notYetReporting ? sensors.error : null;
 

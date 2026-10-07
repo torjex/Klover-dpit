@@ -1,9 +1,9 @@
-/* ---------------------------------------------------------------
-   Klover design tokens
-   --------------------------------------------------------------- */
 :root {
   --ivory: #faf7f0;
   --ivory-sunk: #f4f0e6;
+  --menu-bg: #003d73;
+  --btn-bg: #1f66a8;
+  --btn-bg-hover: #16548f;
   --surface: #ffffff;
 
   --forest-900: #0e3222;
@@ -62,6 +62,27 @@ html,
 body,
 #root {
   height: 100%;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url("/klover-wave.svg") right center / auto 100% no-repeat;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 700px) {
+  body::before {
+    background-size: auto 62%;
+    background-position: right bottom;
+  }
 }
 
 body {

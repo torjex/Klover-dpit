@@ -10,7 +10,7 @@
   border-radius: var(--radius-lg);
 }
 
-/* Zone header: the zone's photo beside its name. */
+
 .watering__zone {
   display: flex;
   align-items: center;
@@ -111,7 +111,7 @@
   border: 1px solid var(--border-soft);
 }
 
-/* Countdown ring: it empties as the run proceeds, matching the clock. */
+
 .wtimer {
   position: relative;
   width: 190px;
@@ -226,7 +226,7 @@
   appearance: textfield;
 }
 
-/* The native spinner only shows on hover and is tiny, so it is replaced. */
+
 .watering__custom-input::-webkit-outer-spin-button,
 .watering__custom-input::-webkit-inner-spin-button {
   appearance: none;
@@ -270,7 +270,7 @@
   color: var(--muted);
 }
 
-/* The primary and stop actions anchor each card. */
+
 .watering__action.btn {
   height: 56px;
   border-radius: var(--radius);

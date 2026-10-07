@@ -1,8 +1,3 @@
-/* ---------------------------------------------------------------
-   Overview stat cards
-   A self-contained palette: brighter emerald + blue on white, sitting
-   on a soft mint wash, per the Overview design.
-   --------------------------------------------------------------- */
 .ovc-band {
   position: relative;
   margin: 0 0 4px;
@@ -40,7 +35,7 @@
   }
 }
 
-/* Card ---------------------------------------------------------- */
+
 .ovc {
   --ovc-ink: #16233a;
   --ovc-title: #26374e;
@@ -206,7 +201,7 @@ a.ovc:hover .ovc__chevron {
   padding-top: 18px;
 }
 
-/* Card 1 — leaf tally ------------------------------------------- */
+
 .ovc__leaves {
   display: flex;
   align-items: center;
@@ -221,7 +216,7 @@ a.ovc:hover .ovc__chevron {
   color: #d6dee6;
 }
 
-/* Card 2 — sparkline -------------------------------------------- */
+
 .ovc__spark-row {
   display: flex;
   align-items: flex-end;
@@ -257,7 +252,7 @@ a.ovc:hover .ovc__chevron {
   padding-bottom: 2px;
 }
 
-/* Card 3 — probability meter ------------------------------------ */
+
 .ovc__meter {
   height: 8px;
   border-radius: 999px;
@@ -282,7 +277,7 @@ a.ovc:hover .ovc__chevron {
   font-variant-numeric: tabular-nums;
 }
 
-/* Decorative art ------------------------------------------------ */
+
 .ovc__art {
   position: absolute;
   right: -6px;
@@ -298,7 +293,7 @@ a.ovc:hover .ovc__chevron {
   opacity: 0.85;
 }
 
-/* Skeleton ------------------------------------------------------ */
+
 .ovc--loading {
   gap: 14px;
 }

@@ -32,7 +32,6 @@ export function OverviewPage() {
   const yesterday = days.length >= 2 ? days[days.length - 2].liters : 0;
   const trend = formatPercentChange(totalToday, yesterday);
 
-  // The sparkline shows the ten most recent calendar days, today last.
   const sparkline = days.slice(-10).map((day) => day.liters);
 
   const nextSchedule = pickNextSchedule(schedules.data ?? []);
@@ -128,7 +127,6 @@ export function OverviewPage() {
   );
 }
 
-/** Fields carry the planting description; their sensors carry soil moisture. */
 async function loadGarden(): Promise<{ fields: Field[]; sensors: Sensor[] }> {
   const farms = await api.farms();
   const fields = (

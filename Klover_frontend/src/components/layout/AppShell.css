@@ -2,21 +2,13 @@
   display: grid;
   grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
   min-height: 100vh;
-  background: var(--ivory);
+  background: transparent;
 }
 
-/* Sidebar ------------------------------------------------------ */
-/*
- * Fixed rather than sticky. A full-height sticky rail desynced from the scroll
- * in Chromium: layout still reported it pinned at the top while it painted part
- * way down the viewport, leaving a blank strip above it on the pages long
- * enough to scroll. The grid track below still reserves the column, so the main
- * pane keeps its position.
- */
 .sidebar {
   display: flex;
   flex-direction: column;
-  background: var(--forest-900);
+  background: var(--menu-bg);
   color: rgba(255, 255, 255, 0.78);
   padding: 20px 14px 18px;
   position: fixed;
@@ -70,8 +62,7 @@
   padding-top: 12px;
 }
 
-/* The mode line and the account line share one icon column so that
-   "Simulator" and the account name start on the same edge. */
+
 .sidebar__mode {
   display: flex;
   align-items: center;
@@ -134,7 +125,7 @@
   white-space: nowrap;
 }
 
-/* Sits beside the account name as a bare arrow. */
+
 .sidebar__signout {
   display: grid;
   place-items: center;
@@ -154,10 +145,8 @@
   color: #fff;
 }
 
-/* Main --------------------------------------------------------- */
+
 .main {
-  /* The sidebar is out of flow, so the main pane is placed in its column
-     explicitly rather than by auto-placement. */
   grid-column: 2;
   min-width: 0;
   padding: 30px clamp(20px, 3.4vw, 44px) 64px;
@@ -230,7 +219,6 @@
   font-size: 18px;
 }
 
-/* Mobile ------------------------------------------------------- */
 .shell__menu-btn {
   display: none;
 }
@@ -259,7 +247,7 @@
     position: fixed;
     inset: 0;
     z-index: 80;
-    background: rgba(14, 34, 24, 0.4);
+    background: rgba(0, 30, 58, 0.4);
   }
   .shell__menu-btn {
     display: inline-flex;
@@ -282,7 +270,7 @@
   }
 }
 
-/* Full-bleed pages (the garden map) supply their own chrome ------- */
+
 .main--bleed {
   padding: 0;
   height: 100vh;

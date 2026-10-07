@@ -4,7 +4,7 @@ import { Icon, Skeleton } from "./ui";
 import { formatLiters } from "../lib/format";
 import "./StatCards.css";
 
-/* -- Shared card shell ------------------------------------------- */
+
 function StatCard({
   to,
   title,
@@ -45,7 +45,7 @@ function StatCard({
   );
 }
 
-/* -- Card 1: active zones ---------------------------------------- */
+
 export function ActiveZonesCard({
   active,
   total,
@@ -91,7 +91,7 @@ export function ActiveZonesCard({
   );
 }
 
-/* -- Card 2: water usage ----------------------------------------- */
+
 export function WaterUsageCard({
   liters,
   trend,
@@ -151,7 +151,7 @@ export function WaterUsageCard({
   );
 }
 
-/* -- Card 3: rain probability ------------------------------------ */
+
 export function RainProbabilityCard({
   percent,
   unavailable,
@@ -187,7 +187,7 @@ export function RainProbabilityCard({
   );
 }
 
-/* -- Card 4: next schedule --------------------------------------- */
+
 export function NextScheduleCard({
   day,
   time,
@@ -224,7 +224,7 @@ export function NextScheduleCard({
   );
 }
 
-/* -- Loading placeholder ----------------------------------------- */
+
 export function StatCardSkeleton() {
   return (
     <div className="ovc ovc--loading">
@@ -245,7 +245,7 @@ export function StatCardSkeleton() {
   );
 }
 
-/* -- Artwork ------------------------------------------------------ */
+
 function LeafGlyph({
   size = 18,
   className,
@@ -347,8 +347,6 @@ function SunLeafArt() {
           opacity="0.75"
         />
       </g>
-
-      {/* A dew drop resting on the front leaf. */}
       <path
         d="M108 96c0 3.4-2.6 6.2-5.8 6.2s-5.8-2.8-5.8-6.2c0-3.3 3.4-7.2 5.8-9.3 2.4 2.1 5.8 6 5.8 9.3Z"
         fill="#dff0fd"

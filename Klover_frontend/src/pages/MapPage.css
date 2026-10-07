@@ -1,6 +1,3 @@
-/* ---------------------------------------------------------------
-   Garden map - an immersive canvas with floating dark chrome.
-   --------------------------------------------------------------- */
 .gmap {
   --gm-mini-h: 0px;
   --gm-panel: rgba(18, 24, 22, 0.82);
@@ -25,7 +22,7 @@
   inset: 0;
 }
 
-/* Shared floating surface ---------------------------------------- */
+
 .gpanel {
   background: var(--gm-panel);
   border: 1px solid var(--gm-edge);
@@ -35,7 +32,7 @@
   color: var(--gm-text);
 }
 
-/* Top bar: basemap switch + address search ------------------------ */
+
 .gmap__topbar {
   position: absolute;
   z-index: 600;
@@ -72,8 +69,7 @@
   transition: background-color 0.16s ease, color 0.16s ease;
 }
 
-/* Hover only lifts the *unselected* buttons. The selected one is a white pill
-   with dark text, so tinting its label light would erase it. */
+
 .gswitch button:hover:not(:disabled):not([aria-pressed="true"]) {
   background: rgba(255, 255, 255, 0.1);
   color: var(--gm-text);
@@ -152,7 +148,7 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Top-right actions ----------------------------------------------- */
+
 .gmap__topright {
   margin-left: auto;
   display: flex;
@@ -198,14 +194,13 @@
   cursor: not-allowed;
 }
 
-/* Right rail ------------------------------------------------------- */
+
 .gmap__rail {
   position: absolute;
   z-index: 550;
   top: 84px;
   right: 18px;
   width: 348px;
-  /* Stops above the minimap, which is only present in drone view. */
   max-height: calc(100% - 190px - var(--gm-mini-h));
   display: flex;
   flex-direction: column;
@@ -299,10 +294,7 @@
   background: #2a8f54;
 }
 
-/* Zone rows -------------------------------------------------------- */
-/* Deliberately compact: the rail is chrome floating over the map, so a row
-   gives up whitespace to keep the garden visible behind it. Each row reads as
-   three lines - identity, when it next runs, and the numbers. */
+
 .gzone {
   display: block;
   width: 100%;
@@ -337,7 +329,7 @@
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
 }
 
-/* A watering zone's dot breathes, so the rail shows activity at a glance. */
+
 .gzone__dot[data-live="true"] {
   animation: gzone-pulse 1.6s ease-in-out infinite;
 }
@@ -393,7 +385,7 @@
   flex: none;
 }
 
-/* Indented to the name, clearing the status dot's column. */
+
 .gzone__body {
   display: block;
   margin: 2px 0 0 17px;
@@ -444,7 +436,7 @@
   color: var(--gm-dim);
 }
 
-/* Tools card -------------------------------------------------------- */
+
 .gtools {
   padding: 12px;
 }
@@ -464,7 +456,7 @@
   color: var(--gm-dim);
 }
 
-/* Names the surface being drawn on, since each one keeps its own shapes. */
+
 .gtools__scope {
   margin-left: auto;
   max-width: 46%;
@@ -538,7 +530,7 @@
   background: rgba(240, 150, 90, 0.26);
 }
 
-/* Drone images list -------------------------------------------------- */
+
 .gimages {
   padding: 12px;
   display: flex;
@@ -602,7 +594,7 @@
   color: #ff9c90;
 }
 
-/* Zoom controls ------------------------------------------------------ */
+
 .gmap__zoom {
   position: absolute;
   z-index: 550;
@@ -634,7 +626,7 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Hint toast ---------------------------------------------------------- */
+
 .ghint {
   position: absolute;
   z-index: 560;
@@ -674,7 +666,7 @@
   color: var(--gm-text);
 }
 
-/* Minimap -------------------------------------------------------------- */
+
 .gmini {
   position: absolute;
   z-index: 550;
@@ -725,7 +717,7 @@
   background: rgba(40, 52, 46, 0.95);
 }
 
-/* Scale ----------------------------------------------------------------- */
+
 .gscale {
   position: absolute;
   z-index: 550;
@@ -745,7 +737,7 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* Leaflet overrides -------------------------------------------------------- */
+
 .gmap .leaflet-container {
   height: 100%;
   width: 100%;
@@ -767,12 +759,10 @@
 }
 
 .gmap-overlay-image {
-  /* The photo is pinned to the extent the satellite view was showing, so it
-     covers the whole canvas without being stretched out of proportion. */
   object-fit: cover;
 }
 
-/* Zone label ------------------------------------------------------------- */
+
 .gmap-label {
   background: none;
   border: 0;
@@ -817,7 +807,7 @@
   opacity: 0.78;
 }
 
-/* Sprinkler marker --------------------------------------------------------- */
+
 .gmap-sprinkler {
   background: none;
   border: 0;
@@ -835,7 +825,7 @@
   transform: translate(-50%, -50%);
 }
 
-/* Narrow screens ------------------------------------------------------------ */
+
 @media (max-width: 1080px) {
   .gmap__rail {
     top: auto;
@@ -853,7 +843,7 @@
   }
 }
 
-/* The shell's floating Menu button occupies the top-left below this width. */
+
 @media (max-width: 860px) {
   .gmap__topbar {
     flex-wrap: wrap;

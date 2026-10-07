@@ -21,7 +21,6 @@ import "./SchedulesPage.css";
 
 const ALL_DAYS = [0, 1, 2, 3, 4, 5, 6];
 
-/** The backend stores days as a cron day-of-week string: "*" or "1,3,5" (0 = Sunday). */
 function parseDays(value: string): number[] {
   if (value.trim() === "*") return ALL_DAYS;
   return value
@@ -184,8 +183,7 @@ export function SchedulesPage() {
 
       <p className="sched__note">
         <Icon name="info" size={16} />
-        Times use the clock of the machine running the backend. Automatic runs are skipped when today's rain
-        chance is 60% or higher; manual runs ignore the rain check.
+        Automatic runs are skipped when today's rain chance is 60% or higher; manual runs ignore the rain check.
       </p>
 
       {creating || editing ? (
